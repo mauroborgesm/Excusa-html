@@ -1,24 +1,29 @@
-let who = ['The dog','My grandma','His turtle','My bird'];
-let action = ['ate','peed','crushed','broke'];
-let what = ['my homework', 'the keys', 'the car'];
-let when = ['before the class','right on time','when I finished','during my lunch','while I was praying'];  
+const who = ["The dog", "My grandma", "His turtle", "My bird"];
+const action = ["ate", "peed", "crushed", "broke"];
+const what = ["my homework", "the keys", "the car"];
+const when = [
+  "before the class",
+  "right on time",
+  "when I finished",
+  "during my lunch",
+  "while I was praying",
+];
 
+const arrayPicker = (item) => item[Math.floor(Math.random() * item.length)];
 
-function ArrayPicker(item){
-    let concatenated = item[Math.floor(Math.random()*item.length)];
-    return concatenated;
-}
+const arrayConcatenator = ({ who, action, what, when }) =>
+  `${who} ${action} ${what} ${when}`;
 
-function ArrayConcatenator(who, action, what, when){
-    let sentence = who+" "+action+" "+what+" "+when;
-    return sentence;
-}
+const writeToHtml = () => {
+  const value = {
+    who: arrayPicker(who),
+    action: arrayPicker(action),
+    what: arrayPicker(what),
+    when: arrayPicker(when),
+  };
+  return (document.getElementById("excuse").innerHTML = arrayConcatenator(
+    value
+  ));
+};
 
-const concatenatedSentence = ArrayConcatenator(ArrayPicker(who), ArrayPicker(action), ArrayPicker(what), ArrayPicker(when));
-
-function WriteToHtml(){
-    console.log(concatenatedSentence);
-    document.getElementById("excuse").innerHTML = concatenatedSentence;
-}
-
-document.addEventListener("DOMContentLoaded", WriteToHtml);
+document.addEventListener("DOMContentLoaded", writeToHtml);
